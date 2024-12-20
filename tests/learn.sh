@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=2 python testbed.py --model --start 0 --end 200 --Mode greedy --dataset cnn >> ./log/resultsv2.log

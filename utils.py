@@ -8,8 +8,7 @@ def get_residual(p: torch.Tensor, q:torch.Tensor):
     return residual
 
 def sampling_without_replacement(
-        sampling_logits: torch.Tensor, 
-        rand: torch.Tensor,  
+         rand: torch.Tensor,  
         num_samples: int,
         temperature :float):
 

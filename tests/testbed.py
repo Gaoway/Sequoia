@@ -17,16 +17,26 @@ from utils import get_sampling_logits, _make_causal_mask, cuda_graph_for_residua
 from Engine.Engine import GraphInferenceEngine, GraphInferenceEngineTG
 from Engine.offload_engine import OffloadEngine
 import random
+
+llama68m = "/data0/lygao/model/llama/llama-68m"
+llama13b = "/data0/lygao/model/llama/llama-13b"
+llama8b = "/data0/lygao/model/llama/llama-8b"
+vicuna68m = "/data0/lygao/model/vicuna/vicuna-68m"
+vicuna160m = "/data0/lygao/model/vicuna/vicuna-160m"
+
+c4_small = "../dataset/c4_small.json"
+
+
 parser = argparse.ArgumentParser()
-parser.add_argument('--model', type=str, help='model')
-parser.add_argument('--target', type=str, help='target model')
-parser.add_argument('--dataset', type=str, default="../dataset/c4_small.json", help='dataset path')
+parser.add_argument('--model', type=str, default=llama68m, help='model')
+parser.add_argument('--target', type=str, default=llama13b, help='target model')
+parser.add_argument('--dataset', type=str, default=c4_small, help='dataset path')
 parser.add_argument('--growmap', type=str, default="../growmaps/68m_7b-64.pt", help='growmap path')
 parser.add_argument('--start', type=int, default=0, help='start')
 parser.add_argument('--end', type=int, default=200, help='end')
 parser.add_argument('--T', type=float, default=0.6, help='temperature')
 parser.add_argument('--P', type=float, default=0.9, help='top_p')
-parser.add_argument('--M', type=int, default=256, help='max length')
+parser.add_argument('--M', type=int, default=384, help='max length')
 parser.add_argument('--seed', type=int, default=17, help='random seed')
 parser.add_argument('--Mode', type=str, default="greedy", help='tree mode')
 parser.add_argument('--offloading', action='store_true')
